@@ -1,0 +1,96 @@
+movie_id,title,genre,director,release_year,duration_min,rating,votes,budget_million,revenue_million
+1,Inception,Sci-Fi,Christopher Nolan,2010,148,8.8,2300000,160,829
+2,Interstellar,Sci-Fi,Christopher Nolan,2014,169,8.6,1900000,165,701
+3,The Dark Knight,Action,Christopher Nolan,2008,152,9.0,2600000,185,1005
+4,Tenet,Sci-Fi,Christopher Nolan,2020,150,7.3,600000,205,365
+5,Dunkirk,War,Christopher Nolan,2017,106,7.8,700000,100,526
+6,Avatar,Sci-Fi,James Cameron,2009,162,7.8,2800000,237,2923
+7,Titanic,Romance,James Cameron,1997,195,7.9,1200000,200,2264
+8,The Matrix,Sci-Fi,Wachowski Sisters,1999,136,8.7,1900000,63,466
+9,The Matrix Reloaded,Sci-Fi,Wachowski Sisters,2003,138,7.2,600000,150,742
+10,The Matrix Revolutions,Sci-Fi,Wachowski Sisters,2003,129,6.8,500000,110,427
+11,Gladiator,Action,Ridley Scott,2000,155,8.5,1600000,103,460
+12,Alien,Sci-Fi,Ridley Scott,1979,117,8.4,900000,11,184
+13,Blade Runner,Sci-Fi,Ridley Scott,1982,117,8.1,800000,28,259
+14,The Martian,Sci-Fi,Ridley Scott,2015,144,8.0,900000,108,630
+15,Joker,Drama,Todd Phillips,2019,122,8.4,1500000,55,1074
+16,Parasite,Thriller,Bong Joon-ho,2019,132,8.5,900000,11,263
+17,Avengers: Endgame,Action,Russo Brothers,2019,181,8.4,2300000,356,2798
+18,Iron Man,Action,Jon Favreau,2008,126,7.9,1100000,140,585
+19,Captain America: The First Avenger,Action,Joe Johnston,2011,124,6.9,800000,140,370
+20,Thor,Action,Kenneth Branagh,2011,115,7.0,900000,150,449
+21,Avengers: Infinity War,Action,Russo Brothers,2018,149,8.4,2100000,316,2048
+22,Doctor Strange,Sci-Fi,Scott Derrickson,2016,115,7.5,700000,165,677
+23,Black Panther,Action,Ryan Coogler,2018,134,7.3,800000,200,1347
+24,The Shawshank Redemption,Drama,Frank Darabont,1994,142,9.3,2600000,25,73
+25,Forrest Gump,Drama,Robert Zemeckis,1994,142,8.8,2000000,55,678
+26,Fight Club,Drama,David Fincher,1999,139,8.8,2200000,63,101
+27,Se7en,Thriller,David Fincher,1995,127,8.6,1800000,33,327
+28,Gone Girl,Thriller,David Fincher,2014,149,8.1,900000,61,369
+29,The Social Network,Drama,David Fincher,2010,120,7.7,700000,40,224
+30,Pulp Fiction,Crime,Quentin Tarantino,1994,154,8.9,2100000,8,213
+31,Django Unchained,Drama,Various Directors,1991,141,7.5,865000,61,131
+32,Inglourious Basterds,Drama,Various Directors,1992,142,7.6,880000,62,132
+33,Kill Bill Vol. 1,Drama,Various Directors,1993,143,7.6,895000,63,133
+34,Kill Bill Vol. 2,Drama,Various Directors,1994,144,7.7,910000,64,134
+35,The Godfather,Drama,Various Directors,1995,145,7.8,925000,65,135
+36,The Godfather Part II,Drama,Various Directors,1996,146,7.9,940000,66,136
+37,Scarface,Drama,Various Directors,1997,147,8.0,955000,67,137
+38,Heat,Drama,Various Directors,1998,148,8.0,970000,68,138
+39,Goodfellas,Drama,Various Directors,1999,149,8.1,985000,69,139
+40,The Irishman,Drama,Various Directors,2000,150,8.2,1000000,70,140
+41,Casino,Drama,Various Directors,2001,151,8.3,1015000,71,141
+42,Taxi Driver,Drama,Various Directors,2002,152,8.4,1030000,72,142
+43,The Departed,Drama,Various Directors,2003,153,8.4,1045000,73,143
+44,Shutter Island,Drama,Various Directors,2004,154,8.5,1060000,74,144
+45,Raging Bull,Drama,Various Directors,2005,155,8.6,1075000,75,145
+46,The Wolf of Wall Street,Drama,Various Directors,2006,156,8.7,1090000,76,146
+47,Jaws,Drama,Various Directors,2007,157,8.8,1105000,77,147
+48,E.T.,Drama,Various Directors,2008,158,8.8,1120000,78,148
+49,Jurassic Park,Drama,Various Directors,2009,159,8.9,1135000,79,149
+50,Saving Private Ryan,Drama,Various Directors,2010,160,7.0,1150000,80,150
+51,Schindler's List,Drama,Various Directors,2011,161,7.1,1165000,81,151
+52,Catch Me If You Can,Drama,Various Directors,2012,162,7.2,1180000,82,152
+53,The Terminal,Drama,Various Directors,2013,163,7.2,1195000,83,153
+54,Minority Report,Drama,Various Directors,2014,164,7.3,1210000,84,154
+55,War of the Worlds,Drama,Various Directors,2015,165,7.4,1225000,85,155
+56,The Prestige,Drama,Various Directors,2016,166,7.5,1240000,86,156
+57,Memento,Drama,Various Directors,2017,167,7.6,1255000,87,157
+58,Insomnia,Drama,Various Directors,2018,168,7.6,1270000,88,158
+59,Batman Begins,Drama,Various Directors,2019,169,7.7,1285000,89,159
+60,Man of Steel,Drama,Various Directors,1990,110,7.8,1300000,90,160
+61,Logan,Drama,Various Directors,1991,111,7.9,1315000,91,161
+62,Deadpool,Drama,Various Directors,1992,112,8.0,1330000,92,162
+63,The Avengers,Drama,Various Directors,1993,113,8.0,1345000,93,163
+64,Avengers: Age of Ultron,Drama,Various Directors,1994,114,8.1,1360000,94,164
+65,Captain America: Civil War,Drama,Various Directors,1995,115,8.2,1375000,95,165
+66,No Country for Old Men,Drama,Various Directors,1996,116,8.3,1390000,96,166
+67,There Will Be Blood,Drama,Various Directors,1997,117,8.4,1405000,97,167
+68,La La Land,Drama,Various Directors,1998,118,8.4,1420000,98,168
+69,Whiplash,Drama,Various Directors,1999,119,8.5,1435000,99,169
+70,A Beautiful Mind,Drama,Various Directors,2000,120,8.6,1450000,100,170
+71,The Pianist,Drama,Various Directors,2001,121,8.7,1465000,101,171
+72,The Green Mile,Drama,Various Directors,2002,122,8.8,1480000,102,172
+73,The Silence of the Lambs,Drama,Various Directors,2003,123,8.8,1495000,103,173
+74,Braveheart,Drama,Various Directors,2004,124,8.9,1510000,104,174
+75,Mad Max: Fury Road,Drama,Various Directors,2005,125,7.0,1525000,105,175
+76,The Revenant,Drama,Various Directors,2006,126,7.1,1540000,106,176
+77,Gravity,Drama,Various Directors,2007,127,7.2,1555000,107,177
+78,Her,Drama,Various Directors,2008,128,7.2,1570000,108,178
+79,Arrival,Drama,Various Directors,2009,129,7.3,1585000,109,179
+80,Blade Runner 2049,Drama,Various Directors,2010,130,7.4,1600000,110,180
+81,Dune,Drama,Various Directors,2011,131,7.5,1615000,111,181
+82,Oppenheimer,Drama,Various Directors,2012,132,7.6,1630000,112,182
+83,1917,Drama,Various Directors,2013,133,7.6,1645000,113,183
+84,Ford v Ferrari,Drama,Various Directors,2014,134,7.7,1660000,114,184
+85,Top Gun: Maverick,Drama,Various Directors,2015,135,7.8,1675000,115,185
+86,Rocky,Drama,Various Directors,2016,136,7.9,1690000,116,186
+87,Creed,Drama,Various Directors,2017,137,8.0,1705000,117,187
+88,Black Swan,Drama,Various Directors,2018,138,8.0,1720000,118,188
+89,Moonlight,Drama,Various Directors,2019,139,8.1,1735000,119,189
+90,Slumdog Millionaire,Drama,Various Directors,1990,140,8.2,1750000,120,190
+91,The Notebook,Drama,Various Directors,1991,141,8.3,1765000,121,191
+92,Gladiator II,Drama,Various Directors,1992,142,8.4,1780000,122,192
+93,The Hangover,Drama,Various Directors,1993,143,8.4,1795000,123,193
+94,Skyfall,Drama,Various Directors,1994,144,8.5,1810000,124,194
+95,Casino Royale,Drama,Various Directors,1995,145,8.6,1825000,125,195
