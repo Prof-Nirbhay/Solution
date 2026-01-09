@@ -1,267 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQL Detailed Notes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px 10px;
-            text-align: center;
-        }
-
-        nav {
-            background-color: #34495e;
-            padding: 10px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-right: 15px;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        section {
-            padding: 20px;
-            margin: 10px auto;
-            max-width: 1000px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #2980b9;
-            padding-bottom: 5px;
-        }
-
-        pre {
-            background-color: #ecf0f1;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-
-        code {
-            color: #c0392b;
-            font-weight: bold;
-        }
-
-        footer {
-            text-align: center;
-            padding: 15px;
-            background-color: #2c3e50;
-            color: white;
-            margin-top: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete SQL Notes</title>
+<style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin:0; padding:0; background:#f9f9f9; }
+    header { background:#2c3e50; color:white; padding:20px; text-align:center; }
+    nav { background:#34495e; padding:10px; position:sticky; top:0; z-index:1000; }
+    nav a { color:white; text-decoration:none; margin-right:15px; font-weight:bold; }
+    nav a:hover { text-decoration:underline; }
+    section { padding:20px; margin:10px auto; max-width:1000px; background:white; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1);}
+    h2 { color:#2c3e50; border-bottom:2px solid #2980b9; padding-bottom:5px; }
+    h3 { color:#2980b9; margin-top:20px; }
+    pre { background:#ecf0f1; padding:15px; border-radius:5px; overflow-x:auto; }
+    code { color:#c0392b; font-weight:bold; }
+    footer { text-align:center; padding:15px; background:#2c3e50; color:white; margin-top:20px; }
+    ul { list-style:none; padding:0; }
+    ul li { margin-bottom:5px; }
+</style>
 </head>
 <body>
 
 <header>
-    <h1>SQL Detailed Notes</h1>
-    <p>Comprehensive explanations, syntax, and examples for SQL topics</p>
+    <h1>Complete SQL Notes</h1>
+    <p>Comprehensive explanations, syntax, and examples</p>
 </header>
 
 <nav>
-    <a href="#intro">Introduction</a>
-    <a href="#ddl">DDL Commands</a>
-    <a href="#dml">DML Commands</a>
-    <a href="#dcl">DCL Commands</a>
-    <a href="#tcl">TCL Commands</a>
+    <a href="#basics">Relational Database Basics</a>
+    <a href="#keys">Primary & Foreign Keys</a>
+    <a href="#operators">Operators</a>
+    <a href="#clauses">Clauses & Queries</a>
     <a href="#joins">Joins</a>
-    <a href="#functions">SQL Functions</a>
+    <a href="#functions">Functions</a>
+    <a href="#transactions">Transactions & ACID</a>
+    <a href="#advanced">Advanced Topics</a>
 </nav>
 
-<section id="intro">
-    <h2>Introduction to SQL</h2>
-    <p>
-        SQL (Structured Query Language) is a standard language used to interact with relational databases.
-        It allows you to create, read, update, and delete data.
-    </p>
-    <pre><code>-- Example: Select all records from a table
-SELECT * FROM employees;</code></pre>
-</section>
-
-<section id="ddl">
-    <h2>DDL (Data Definition Language)</h2>
-    <p>DDL commands are used to define or modify database structures such as tables.</p>
-
-    <h3>1. CREATE</h3>
-    <p>Used to create databases and tables.</p>
-    <pre><code>-- Syntax:
-CREATE TABLE table_name (
-    column1 datatype PRIMARY KEY,
-    column2 datatype,
-    column3 datatype
-);
-
--- Example:
+<!-- Basics -->
+<section id="basics">
+    <h2>Relational Database Basics</h2>
+    <p>A relational database organizes data into tables (rows & columns) and supports relationships between them.</p>
+    <pre><code>-- Example: Creating a simple table
 CREATE TABLE employees (
     id INT PRIMARY KEY,
     name VARCHAR(50),
     salary DECIMAL(10,2)
 );</code></pre>
-
-    <h3>2. ALTER</h3>
-    <p>Used to modify an existing table.</p>
-    <pre><code>-- Syntax:
-ALTER TABLE table_name
-ADD column_name datatype;
-
--- Example:
-ALTER TABLE employees
-ADD department VARCHAR(50);</code></pre>
-
-    <h3>3. DROP</h3>
-    <p>Used to delete tables or databases.</p>
-    <pre><code>-- Syntax:
-DROP TABLE table_name;
-
--- Example:
-DROP TABLE employees;</code></pre>
 </section>
 
-<section id="dml">
-    <h2>DML (Data Manipulation Language)</h2>
-    <p>DML commands are used to manipulate the data stored in tables.</p>
-
-    <h3>1. INSERT</h3>
-    <pre><code>-- Syntax:
-INSERT INTO table_name (column1, column2)
-VALUES (value1, value2);
-
--- Example:
-INSERT INTO employees (id, name, salary)
-VALUES (1, 'John Doe', 50000);</code></pre>
-
-    <h3>2. UPDATE</h3>
-    <pre><code>-- Syntax:
-UPDATE table_name
-SET column1 = value1
-WHERE condition;
-
--- Example:
-UPDATE employees
-SET salary = 55000
-WHERE id = 1;</code></pre>
-
-    <h3>3. DELETE</h3>
-    <pre><code>-- Syntax:
-DELETE FROM table_name
-WHERE condition;
-
--- Example:
-DELETE FROM employees
-WHERE id = 1;</code></pre>
+<!-- Keys -->
+<section id="keys">
+    <h2>Primary and Foreign Keys</h2>
+    <h3>Primary Key</h3>
+    <p>Unique identifier for each row in a table.</p>
+    <pre><code>CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    name VARCHAR(50)
+);</code></pre>
+    <h3>Foreign Key</h3>
+    <p>Establishes a relationship between two tables.</p>
+    <pre><code>CREATE TABLE departments (
+    dept_id INT PRIMARY KEY,
+    emp_id INT,
+    FOREIGN KEY (emp_id) REFERENCES employees(id)
+);</code></pre>
 </section>
 
-<section id="dcl">
-    <h2>DCL (Data Control Language)</h2>
-    <p>DCL commands control access to data.</p>
+<!-- Operators -->
+<section id="operators">
+    <h2>SQL Operators</h2>
+    <h3>Comparison Operators</h3>
+    <p>=, <>, !=, <, >, <=, >=, <=>, IS NULL, IS NOT NULL, IS DISTINCT FROM, ANY, ALL, SOME, EXISTS, BETWEEN, IN</p>
+    <pre><code>SELECT * FROM employees WHERE salary >= 50000;
+SELECT * FROM employees WHERE name IS NOT NULL;</code></pre>
 
-    <h3>1. GRANT</h3>
-    <pre><code>-- Syntax:
-GRANT privilege ON object TO user;
+    <h3>Logical Operators</h3>
+    <p>AND, OR, NOT, XOR</p>
+    <pre><code>SELECT * FROM employees WHERE salary > 50000 AND dept_id = 1;</code></pre>
 
--- Example:
-GRANT SELECT, INSERT ON employees TO 'user1';</code></pre>
+    <h3>Arithmetic Operators</h3>
+    <p>+, -, *, /, %, MOD, DIV</p>
+    <pre><code>SELECT salary * 0.1 AS bonus FROM employees;</code></pre>
 
-    <h3>2. REVOKE</h3>
-    <pre><code>-- Syntax:
-REVOKE privilege ON object FROM user;
+    <h3>Bitwise Operators</h3>
+    <p>&, |, ^, ~, <<, >></p>
+    <pre><code>SELECT id & 1 FROM employees;</code></pre>
 
--- Example:
-REVOKE INSERT ON employees FROM 'user1';</code></pre>
+    <h3>String & Search Operators</h3>
+    <p>||, CONCAT, LIKE, NOT LIKE, ILIKE, SIMILAR TO, REGEXP, RLIKE, ESCAPE</p>
+    <pre><code>SELECT name FROM employees WHERE name LIKE 'J%';</code></pre>
+
+    <h3>Set Operators</h3>
+    <p>UNION, UNION ALL, INTERSECT, EXCEPT, MINUS</p>
+    <pre><code>SELECT name FROM employees
+UNION
+SELECT name FROM contractors;</code></pre>
 </section>
 
-<section id="tcl">
-    <h2>TCL (Transaction Control Language)</h2>
-    <p>TCL commands manage transactions in the database.</p>
-
-    <h3>1. COMMIT</h3>
-    <pre><code>-- Syntax:
-COMMIT;
-
--- Example:
--- After inserting or updating records, save changes
-INSERT INTO employees (id, name, salary) VALUES (2, 'Jane Doe', 60000);
-COMMIT;</code></pre>
-
-    <h3>2. ROLLBACK</h3>
-    <pre><code>-- Syntax:
-ROLLBACK;
-
--- Example:
--- Undo changes made in the current transaction
-ROLLBACK;</code></pre>
+<!-- Clauses -->
+<section id="clauses">
+    <h2>Clauses & Queries</h2>
+    <h3>SELECT & FROM</h3>
+    <pre><code>SELECT name, salary FROM employees;</code></pre>
+    <h3>WHERE</h3>
+    <pre><code>SELECT * FROM employees WHERE salary > 50000;</code></pre>
+    <h3>ORDER BY</h3>
+    <pre><code>SELECT * FROM employees ORDER BY salary DESC;</code></pre>
+    <h3>LIMIT/TOP</h3>
+    <pre><code>SELECT * FROM employees LIMIT 5;</code></pre>
+    <h3>DISTINCT</h3>
+    <pre><code>SELECT DISTINCT dept_id FROM employees;</code></pre>
+    <h3>Subqueries & Correlated Subqueries</h3>
+    <pre><code>SELECT * FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);</code></pre>
 </section>
 
+<!-- Joins -->
 <section id="joins">
-    <h2>SQL Joins</h2>
-    <p>Joins are used to combine rows from two or more tables.</p>
-
-    <h3>1. INNER JOIN</h3>
+    <h2>Joins</h2>
+    <h3>INNER JOIN</h3>
     <pre><code>SELECT a.name, b.department
 FROM employees a
-INNER JOIN departments b
-ON a.id = b.emp_id;</code></pre>
-
-    <h3>2. LEFT JOIN</h3>
+INNER JOIN departments b ON a.id = b.emp_id;</code></pre>
+    <h3>LEFT JOIN</h3>
     <pre><code>SELECT a.name, b.department
 FROM employees a
-LEFT JOIN departments b
-ON a.id = b.emp_id;</code></pre>
-
-    <h3>3. RIGHT JOIN</h3>
+LEFT JOIN departments b ON a.id = b.emp_id;</code></pre>
+    <h3>RIGHT JOIN</h3>
     <pre><code>SELECT a.name, b.department
 FROM employees a
-RIGHT JOIN departments b
-ON a.id = b.emp_id;</code></pre>
-
-    <h3>4. FULL OUTER JOIN</h3>
+RIGHT JOIN departments b ON a.id = b.emp_id;</code></pre>
+    <h3>FULL OUTER JOIN</h3>
     <pre><code>SELECT a.name, b.department
 FROM employees a
-FULL OUTER JOIN departments b
-ON a.id = b.emp_id;</code></pre>
+FULL OUTER JOIN departments b ON a.id = b.emp_id;</code></pre>
+    <h3>CROSS JOIN</h3>
+    <pre><code>SELECT a.name, b.department
+FROM employees a CROSS JOIN departments b;</code></pre>
+    <h3>Self Join & Aliases</h3>
+    <pre><code>SELECT e1.name AS Employee, e2.name AS Manager
+FROM employees e1
+LEFT JOIN employees e2 ON e1.manager_id = e2.id;</code></pre>
 </section>
 
+<!-- Functions -->
 <section id="functions">
     <h2>SQL Functions</h2>
-    <p>SQL provides functions to perform calculations and manipulate data.</p>
-
-    <h3>1. Aggregate Functions</h3>
-    <pre><code>-- Example: Count, Sum, Avg
-SELECT COUNT(*) FROM employees;
-SELECT SUM(salary) FROM employees;
-SELECT AVG(salary) FROM employees;</code></pre>
-
-    <h3>2. String Functions</h3>
-    <pre><code>-- Example: CONCAT, LENGTH, UPPER
-SELECT CONCAT(name, ' works in ', department) FROM employees;
+    <h3>Aggregate Functions</h3>
+    <pre><code>SELECT COUNT(*), SUM(salary), AVG(salary), MIN(salary), MAX(salary) FROM employees;</code></pre>
+    <h3>Group By & Having</h3>
+    <pre><code>SELECT dept_id, AVG(salary) FROM employees GROUP BY dept_id HAVING AVG(salary) > 50000;</code></pre>
+    <h3>String Functions</h3>
+    <pre><code>SELECT CONCAT(name, ' works in ', department) FROM employees;
 SELECT LENGTH(name) FROM employees;
 SELECT UPPER(name) FROM employees;</code></pre>
-
-    <h3>3. Date Functions</h3>
-    <pre><code>-- Example: NOW(), DATE_ADD
-SELECT NOW();
+    <h3>Date Functions</h3>
+    <pre><code>SELECT NOW();
 SELECT DATE_ADD(NOW(), INTERVAL 7 DAY);</code></pre>
+    <h3>Window Functions</h3>
+    <pre><code>SELECT name, salary, ROW_NUMBER() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS rank
+FROM employees;</code></pre>
+    <h3>CASE Statement</h3>
+    <pre><code>SELECT name,
+CASE 
+    WHEN salary > 50000 THEN 'High'
+    ELSE 'Low'
+END AS SalaryCategory
+FROM employees;</code></pre>
+</section>
+
+<!-- Transactions & ACID -->
+<section id="transactions">
+    <h2>Transactions & ACID Properties</h2>
+    <pre><code>-- Transaction
+START TRANSACTION;
+INSERT INTO employees (id, name, salary) VALUES (10, 'Alice', 70000);
+COMMIT;
+-- OR
+ROLLBACK;
+
+-- ACID: Atomicity, Consistency, Isolation, Durability</code></pre>
+</section>
+
+<!-- Advanced Topics -->
+<section id="advanced">
+    <h2>Advanced Topics</h2>
+    <h3>Views</h3>
+    <pre><code>CREATE VIEW high_salary AS
+SELECT * FROM employees WHERE salary > 50000;</code></pre>
+    <h3>Stored Procedures</h3>
+    <pre><code>CREATE PROCEDURE GiveBonus(IN empID INT, IN bonusAmount DECIMAL(10,2))
+BEGIN
+    UPDATE employees SET salary = salary + bonusAmount WHERE id = empID;
+END;</code></pre>
+    <h3>Triggers</h3>
+    <pre><code>CREATE TRIGGER after_salary_update
+AFTER UPDATE ON employees
+FOR EACH ROW
+BEGIN
+    INSERT INTO audit_log(emp_id, old_salary, new_salary)
+    VALUES (OLD.id, OLD.salary, NEW.salary);
+END;</code></pre>
+    <h3>User-Defined Functions</h3>
+    <pre><code>CREATE FUNCTION get_tax(salary DECIMAL(10,2)) RETURNS DECIMAL(10,2)
+BEGIN
+    RETURN salary * 0.1;
+END;</code></pre>
+    <h3>Normalization & Indexing</h3>
+    <pre><code>-- 1NF, 2NF, 3NF
+-- Indexing
+CREATE INDEX idx_salary ON employees(salary);</code></pre>
 </section>
 
 <footer>
