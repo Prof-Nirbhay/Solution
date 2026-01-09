@@ -1,186 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>SQL Notes – Nirbhay Singh</title>
-
+<title>SQL Learning Portal</title>
 <style>
 body{
-    margin:0;
-    font-family:Arial;
-    background:#0f172a;
+    background:#020617;
     color:white;
-}
-
-header{
-    background:#020617;
-    padding:20px;
+    font-family:Arial;
     text-align:center;
-    font-size:28px;
+}
+h1{
     color:#22d3ee;
+    margin-top:50px;
 }
-
-.section{
-    margin:30px auto;
-    width:85%;
-    background:#020617;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0px 0px 10px #22d3ee;
-}
-
-h2{
-    color:#38bdf8;
-}
-
-p{
-    line-height:1.6;
-}
-
-code{
+.button{
     display:block;
-    background:black;
-    padding:12px;
-    margin-top:10px;
-    border-left:4px solid #22d3ee;
-    color:#22d3ee;
-    font-size:15px;
-    overflow-x:auto;
-}
-
-button{
+    width:250px;
+    margin:20px auto;
+    padding:15px;
     background:#22d3ee;
-    border:none;
-    padding:10px 15px;
-    cursor:pointer;
+    color:black;
+    text-decoration:none;
+    font-size:20px;
+    border-radius:8px;
     font-weight:bold;
-    margin-top:10px;
 }
-
-.footer{
-    text-align:center;
-    padding:20px;
-    color:#aaa;
+.button:hover{
+    background:#38bdf8;
 }
 </style>
-
-<script>
-function toggle(id){
-    let x=document.getElementById(id);
-    if(x.style.display==="none"){ x.style.display="block";}
-    else{ x.style.display="none";}
-}
-</script>
-
 </head>
 
 <body>
+<h1>📘 SQL Learning Portal</h1>
+<p>By Nirbhay Singh</p>
 
-<header>📘 SQL Detailed Notes – Nirbhay Singh</header>
-
-<div class="section">
-<h2>1. What is SQL?</h2>
-<p>SQL (Structured Query Language) is a standard language used to store, retrieve, modify and manage data in relational databases. It is widely used in banking, universities, data science, cyber security and enterprise systems.</p>
-</div>
-
-<div class="section">
-<h2>2. CREATE TABLE</h2>
-<button onclick="toggle('c1')">Show SQL</button>
-<code id="c1" style="display:none;">
-CREATE TABLE students (
-    roll_no INT PRIMARY KEY,
-    name VARCHAR(50),
-    age INT,
-    marks FLOAT
-);
-</code>
-</div>
-
-<div class="section">
-<h2>3. INSERT Data</h2>
-<button onclick="toggle('c2')">Show SQL</button>
-<code id="c2" style="display:none;">
-INSERT INTO students VALUES (1, 'Rahul', 20, 85.5);
-INSERT INTO students VALUES (2, 'Amit', 21, 78.0);
-</code>
-</div>
-
-<div class="section">
-<h2>4. SELECT Data</h2>
-<button onclick="toggle('c3')">Show SQL</button>
-<code id="c3" style="display:none;">
-SELECT * FROM students;
-SELECT name, marks FROM students;
-</code>
-</div>
-
-<div class="section">
-<h2>5. WHERE Clause</h2>
-<button onclick="toggle('c4')">Show SQL</button>
-<code id="c4" style="display:none;">
-SELECT * FROM students WHERE marks > 80;
-</code>
-</div>
-
-<div class="section">
-<h2>6. UPDATE</h2>
-<button onclick="toggle('c5')">Show SQL</button>
-<code id="c5" style="display:none;">
-UPDATE students SET marks = 90 WHERE roll_no = 1;
-</code>
-</div>
-
-<div class="section">
-<h2>7. DELETE</h2>
-<button onclick="toggle('c6')">Show SQL</button>
-<code id="c6" style="display:none;">
-DELETE FROM students WHERE roll_no = 2;
-</code>
-</div>
-
-<div class="section">
-<h2>8. Aggregate Functions</h2>
-<button onclick="toggle('c7')">Show SQL</button>
-<code id="c7" style="display:none;">
-SELECT COUNT(*) FROM students;
-SELECT AVG(marks) FROM students;
-SELECT MAX(marks) FROM students;
-</code>
-</div>
-
-<div class="section">
-<h2>9. GROUP BY & HAVING</h2>
-<button onclick="toggle('c8')">Show SQL</button>
-<code id="c8" style="display:none;">
-SELECT age, AVG(marks)
-FROM students
-GROUP BY age
-HAVING AVG(marks) > 80;
-</code>
-</div>
-
-<div class="section">
-<h2>10. JOIN</h2>
-<button onclick="toggle('c9')">Show SQL</button>
-<code id="c9" style="display:none;">
-SELECT students.name, marks.score
-FROM students
-INNER JOIN marks
-ON students.roll_no = marks.roll_no;
-</code>
-</div>
-
-<div class="section">
-<h2>11. TRUNCATE & DROP</h2>
-<button onclick="toggle('c10')">Show SQL</button>
-<code id="c10" style="display:none;">
-TRUNCATE TABLE students;
-DROP TABLE students;
-</code>
-</div>
-
-<div class="footer">
-Designed for Computer Science & Data Science Students
-</div>
+<a class="button" href="sql.html">SQL Notes</a>
 
 </body>
 </html>
