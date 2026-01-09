@@ -13,18 +13,17 @@
     section { padding:20px; margin:10px auto; max-width:1000px; background:white; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1);}
     h2 { color:#2c3e50; border-bottom:2px solid #2980b9; padding-bottom:5px; }
     h3 { color:#2980b9; margin-top:20px; }
+    p { margin-bottom:10px; }
     pre { background:#ecf0f1; padding:15px; border-radius:5px; overflow-x:auto; }
     code { color:#c0392b; font-weight:bold; }
     footer { text-align:center; padding:15px; background:#2c3e50; color:white; margin-top:20px; }
-    ul { list-style:none; padding:0; }
-    ul li { margin-bottom:5px; }
 </style>
 </head>
 <body>
 
 <header>
     <h1>Complete SQL Notes</h1>
-    <p>Comprehensive explanations, syntax, and examples</p>
+    <p>Comprehensive explanations, syntax, and examples for learning SQL</p>
 </header>
 
 <nav>
@@ -41,7 +40,14 @@
 <!-- Basics -->
 <section id="basics">
     <h2>Relational Database Basics</h2>
-    <p>A relational database organizes data into tables (rows & columns) and supports relationships between them.</p>
+    <p>Relational databases store data in structured tables with rows and columns. Each table represents an entity, and relationships can be established between tables using keys. SQL (Structured Query Language) is used to interact with relational databases.</p>
+    <p>Key Concepts:</p>
+    <ul>
+        <li><b>Table:</b> Collection of rows (records) and columns (fields)</li>
+        <li><b>Row:</b> Single record in a table</li>
+        <li><b>Column:</b> Field that stores a specific type of data</li>
+        <li><b>Schema:</b> Defines structure of database tables and relationships</li>
+    </ul>
     <pre><code>-- Example: Creating a simple table
 CREATE TABLE employees (
     id INT PRIMARY KEY,
@@ -54,13 +60,14 @@ CREATE TABLE employees (
 <section id="keys">
     <h2>Primary and Foreign Keys</h2>
     <h3>Primary Key</h3>
-    <p>Unique identifier for each row in a table.</p>
+    <p>A primary key uniquely identifies each record in a table. There can be only one primary key per table, and its values cannot be NULL. It ensures data integrity.</p>
     <pre><code>CREATE TABLE employees (
     id INT PRIMARY KEY,
     name VARCHAR(50)
 );</code></pre>
+
     <h3>Foreign Key</h3>
-    <p>Establishes a relationship between two tables.</p>
+    <p>A foreign key establishes a link between two tables. It ensures referential integrity by restricting values in a column to only those present in the referenced table.</p>
     <pre><code>CREATE TABLE departments (
     dept_id INT PRIMARY KEY,
     emp_id INT,
@@ -71,29 +78,37 @@ CREATE TABLE employees (
 <!-- Operators -->
 <section id="operators">
     <h2>SQL Operators</h2>
+    <p>Operators are used to filter data, perform calculations, or manipulate information.</p>
+
     <h3>Comparison Operators</h3>
-    <p>=, <>, !=, <, >, <=, >=, <=>, IS NULL, IS NOT NULL, IS DISTINCT FROM, ANY, ALL, SOME, EXISTS, BETWEEN, IN</p>
+    <p>Used to compare values in queries. Includes <code>=, <>, !=, <, >, <=, >=, IS NULL, IS NOT NULL, BETWEEN, IN</code>. These help filter rows in WHERE clause.</p>
     <pre><code>SELECT * FROM employees WHERE salary >= 50000;
-SELECT * FROM employees WHERE name IS NOT NULL;</code></pre>
+SELECT * FROM employees WHERE name IS NOT NULL;
+SELECT * FROM employees WHERE dept_id IN (1,2,3);</code></pre>
 
     <h3>Logical Operators</h3>
-    <p>AND, OR, NOT, XOR</p>
-    <pre><code>SELECT * FROM employees WHERE salary > 50000 AND dept_id = 1;</code></pre>
+    <p>Used to combine multiple conditions. Includes <code>AND, OR, NOT, XOR</code>.</p>
+    <pre><code>SELECT * FROM employees 
+WHERE salary > 50000 AND dept_id = 1;
+SELECT * FROM employees 
+WHERE NOT salary < 30000;</code></pre>
 
     <h3>Arithmetic Operators</h3>
-    <p>+, -, *, /, %, MOD, DIV</p>
-    <pre><code>SELECT salary * 0.1 AS bonus FROM employees;</code></pre>
+    <p>Used for calculations. Includes <code>+, -, *, /, %, MOD, DIV</code>.</p>
+    <pre><code>SELECT salary * 0.1 AS bonus FROM employees;
+SELECT MOD(salary, 1000) FROM employees;</code></pre>
 
     <h3>Bitwise Operators</h3>
-    <p>&, |, ^, ~, <<, >></p>
+    <p>Operate at the binary level. Includes <code>&, |, ^, ~, <<, >></code>.</p>
     <pre><code>SELECT id & 1 FROM employees;</code></pre>
 
     <h3>String & Search Operators</h3>
-    <p>||, CONCAT, LIKE, NOT LIKE, ILIKE, SIMILAR TO, REGEXP, RLIKE, ESCAPE</p>
-    <pre><code>SELECT name FROM employees WHERE name LIKE 'J%';</code></pre>
+    <p>Used for pattern matching and string manipulation. Includes <code>||, CONCAT, LIKE, NOT LIKE, ILIKE, SIMILAR TO, REGEXP, RLIKE, ESCAPE</code>.</p>
+    <pre><code>SELECT name FROM employees WHERE name LIKE 'J%';
+SELECT CONCAT(name, ' works in ', department) FROM employees;</code></pre>
 
     <h3>Set Operators</h3>
-    <p>UNION, UNION ALL, INTERSECT, EXCEPT, MINUS</p>
+    <p>Used to combine results from multiple queries. Includes <code>UNION, UNION ALL, INTERSECT, EXCEPT, MINUS</code>.</p>
     <pre><code>SELECT name FROM employees
 UNION
 SELECT name FROM contractors;</code></pre>
@@ -103,42 +118,67 @@ SELECT name FROM contractors;</code></pre>
 <section id="clauses">
     <h2>Clauses & Queries</h2>
     <h3>SELECT & FROM</h3>
+    <p>Select specifies columns to return; FROM specifies table.</p>
     <pre><code>SELECT name, salary FROM employees;</code></pre>
+
     <h3>WHERE</h3>
+    <p>Filters rows based on condition.</p>
     <pre><code>SELECT * FROM employees WHERE salary > 50000;</code></pre>
+
     <h3>ORDER BY</h3>
+    <p>Sorts rows ascending or descending.</p>
     <pre><code>SELECT * FROM employees ORDER BY salary DESC;</code></pre>
-    <h3>LIMIT/TOP</h3>
+
+    <h3>LIMIT / TOP</h3>
+    <p>Limits number of rows returned.</p>
     <pre><code>SELECT * FROM employees LIMIT 5;</code></pre>
+
     <h3>DISTINCT</h3>
+    <p>Removes duplicate rows.</p>
     <pre><code>SELECT DISTINCT dept_id FROM employees;</code></pre>
+
     <h3>Subqueries & Correlated Subqueries</h3>
-    <pre><code>SELECT * FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);</code></pre>
+    <p>Subquery is a query inside another query. Correlated subquery references outer query.</p>
+    <pre><code>SELECT * FROM employees 
+WHERE salary > (SELECT AVG(salary) FROM employees);</code></pre>
 </section>
 
 <!-- Joins -->
 <section id="joins">
     <h2>Joins</h2>
+    <p>Joins combine rows from two or more tables based on related columns.</p>
+
     <h3>INNER JOIN</h3>
+    <p>Returns rows where matching values exist in both tables.</p>
     <pre><code>SELECT a.name, b.department
 FROM employees a
 INNER JOIN departments b ON a.id = b.emp_id;</code></pre>
+
     <h3>LEFT JOIN</h3>
+    <p>Returns all rows from left table and matching rows from right table.</p>
     <pre><code>SELECT a.name, b.department
 FROM employees a
 LEFT JOIN departments b ON a.id = b.emp_id;</code></pre>
+
     <h3>RIGHT JOIN</h3>
+    <p>Returns all rows from right table and matching rows from left table.</p>
     <pre><code>SELECT a.name, b.department
 FROM employees a
 RIGHT JOIN departments b ON a.id = b.emp_id;</code></pre>
+
     <h3>FULL OUTER JOIN</h3>
+    <p>Returns all rows when there is a match in either table.</p>
     <pre><code>SELECT a.name, b.department
 FROM employees a
 FULL OUTER JOIN departments b ON a.id = b.emp_id;</code></pre>
+
     <h3>CROSS JOIN</h3>
+    <p>Returns Cartesian product of both tables.</p>
     <pre><code>SELECT a.name, b.department
 FROM employees a CROSS JOIN departments b;</code></pre>
+
     <h3>Self Join & Aliases</h3>
+    <p>Joining table to itself; aliases help differentiate tables.</p>
     <pre><code>SELECT e1.name AS Employee, e2.name AS Manager
 FROM employees e1
 LEFT JOIN employees e2 ON e1.manager_id = e2.id;</code></pre>
@@ -148,20 +188,35 @@ LEFT JOIN employees e2 ON e1.manager_id = e2.id;</code></pre>
 <section id="functions">
     <h2>SQL Functions</h2>
     <h3>Aggregate Functions</h3>
+    <p>Perform calculations across multiple rows. Includes COUNT, SUM, AVG, MIN, MAX.</p>
     <pre><code>SELECT COUNT(*), SUM(salary), AVG(salary), MIN(salary), MAX(salary) FROM employees;</code></pre>
-    <h3>Group By & Having</h3>
-    <pre><code>SELECT dept_id, AVG(salary) FROM employees GROUP BY dept_id HAVING AVG(salary) > 50000;</code></pre>
+
+    <h3>GROUP BY & HAVING</h3>
+    <p>GROUP BY aggregates rows by column; HAVING filters grouped results.</p>
+    <pre><code>SELECT dept_id, AVG(salary) 
+FROM employees 
+GROUP BY dept_id 
+HAVING AVG(salary) > 50000;</code></pre>
+
     <h3>String Functions</h3>
+    <p>Manipulate text: CONCAT, LENGTH, UPPER, LOWER, SUBSTRING.</p>
     <pre><code>SELECT CONCAT(name, ' works in ', department) FROM employees;
 SELECT LENGTH(name) FROM employees;
 SELECT UPPER(name) FROM employees;</code></pre>
+
     <h3>Date Functions</h3>
+    <p>Manipulate date/time values: NOW(), DATE_ADD(), DATE_SUB()</p>
     <pre><code>SELECT NOW();
 SELECT DATE_ADD(NOW(), INTERVAL 7 DAY);</code></pre>
+
     <h3>Window Functions</h3>
-    <pre><code>SELECT name, salary, ROW_NUMBER() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS rank
+    <p>Perform calculations across a set of rows related to the current row.</p>
+    <pre><code>SELECT name, salary, 
+ROW_NUMBER() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS rank
 FROM employees;</code></pre>
-    <h3>CASE Statement</h3>
+
+    <h3>CASE Statements</h3>
+    <p>Conditional logic in queries.</p>
     <pre><code>SELECT name,
 CASE 
     WHEN salary > 50000 THEN 'High'
@@ -173,28 +228,36 @@ FROM employees;</code></pre>
 <!-- Transactions & ACID -->
 <section id="transactions">
     <h2>Transactions & ACID Properties</h2>
-    <pre><code>-- Transaction
-START TRANSACTION;
+    <p>Transactions are sequences of operations treated as a single unit. ACID ensures data reliability:</p>
+    <ul>
+        <li><b>Atomicity:</b> All operations succeed or none.</li>
+        <li><b>Consistency:</b> Database remains in valid state.</li>
+        <li><b>Isolation:</b> Transactions do not interfere.</li>
+        <li><b>Durability:</b> Committed changes persist even after crashes.</li>
+    </ul>
+    <pre><code>START TRANSACTION;
 INSERT INTO employees (id, name, salary) VALUES (10, 'Alice', 70000);
 COMMIT;
--- OR
-ROLLBACK;
-
--- ACID: Atomicity, Consistency, Isolation, Durability</code></pre>
+-- OR ROLLBACK to undo changes</code></pre>
 </section>
 
 <!-- Advanced Topics -->
 <section id="advanced">
     <h2>Advanced Topics</h2>
     <h3>Views</h3>
+    <p>Virtual tables based on SELECT queries. Useful for abstraction and security.</p>
     <pre><code>CREATE VIEW high_salary AS
 SELECT * FROM employees WHERE salary > 50000;</code></pre>
+
     <h3>Stored Procedures</h3>
+    <p>Predefined SQL code blocks for reuse.</p>
     <pre><code>CREATE PROCEDURE GiveBonus(IN empID INT, IN bonusAmount DECIMAL(10,2))
 BEGIN
     UPDATE employees SET salary = salary + bonusAmount WHERE id = empID;
 END;</code></pre>
+
     <h3>Triggers</h3>
+    <p>Automatic actions executed on table events (INSERT, UPDATE, DELETE).</p>
     <pre><code>CREATE TRIGGER after_salary_update
 AFTER UPDATE ON employees
 FOR EACH ROW
@@ -202,14 +265,17 @@ BEGIN
     INSERT INTO audit_log(emp_id, old_salary, new_salary)
     VALUES (OLD.id, OLD.salary, NEW.salary);
 END;</code></pre>
+
     <h3>User-Defined Functions</h3>
+    <p>Reusable functions returning a value.</p>
     <pre><code>CREATE FUNCTION get_tax(salary DECIMAL(10,2)) RETURNS DECIMAL(10,2)
 BEGIN
     RETURN salary * 0.1;
 END;</code></pre>
+
     <h3>Normalization & Indexing</h3>
-    <pre><code>-- 1NF, 2NF, 3NF
--- Indexing
+    <p>Normalization reduces redundancy. Indexing improves query performance.</p>
+    <pre><code>-- 1NF, 2NF, 3NF applied to table design
 CREATE INDEX idx_salary ON employees(salary);</code></pre>
 </section>
 
@@ -219,3 +285,4 @@ CREATE INDEX idx_salary ON employees(salary);</code></pre>
 
 </body>
 </html>
+    
