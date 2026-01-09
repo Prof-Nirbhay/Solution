@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Detailed Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #34495e;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 1000px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #2980b9;
+            padding-bottom: 5px;
+        }
+
+        pre {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #2c3e50;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SQL Detailed Notes</h1>
+    <p>Comprehensive explanations, syntax, and examples for SQL topics</p>
+</header>
+
+<nav>
+    <a href="#intro">Introduction</a>
+    <a href="#ddl">DDL Commands</a>
+    <a href="#dml">DML Commands</a>
+    <a href="#dcl">DCL Commands</a>
+    <a href="#tcl">TCL Commands</a>
+    <a href="#joins">Joins</a>
+    <a href="#functions">SQL Functions</a>
+</nav>
+
+<section id="intro">
+    <h2>Introduction to SQL</h2>
+    <p>
+        SQL (Structured Query Language) is a standard language used to interact with relational databases.
+        It allows you to create, read, update, and delete data.
+    </p>
+    <pre><code>-- Example: Select all records from a table
+SELECT * FROM employees;</code></pre>
+</section>
+
+<section id="ddl">
+    <h2>DDL (Data Definition Language)</h2>
+    <p>DDL commands are used to define or modify database structures such as tables.</p>
+
+    <h3>1. CREATE</h3>
+    <p>Used to create databases and tables.</p>
+    <pre><code>-- Syntax:
+CREATE TABLE table_name (
+    column1 datatype PRIMARY KEY,
+    column2 datatype,
+    column3 datatype
+);
+
+-- Example:
+CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    salary DECIMAL(10,2)
+);</code></pre>
+
+    <h3>2. ALTER</h3>
+    <p>Used to modify an existing table.</p>
+    <pre><code>-- Syntax:
+ALTER TABLE table_name
+ADD column_name datatype;
+
+-- Example:
+ALTER TABLE employees
+ADD department VARCHAR(50);</code></pre>
+
+    <h3>3. DROP</h3>
+    <p>Used to delete tables or databases.</p>
+    <pre><code>-- Syntax:
+DROP TABLE table_name;
+
+-- Example:
+DROP TABLE employees;</code></pre>
+</section>
+
+<section id="dml">
+    <h2>DML (Data Manipulation Language)</h2>
+    <p>DML commands are used to manipulate the data stored in tables.</p>
+
+    <h3>1. INSERT</h3>
+    <pre><code>-- Syntax:
+INSERT INTO table_name (column1, column2)
+VALUES (value1, value2);
+
+-- Example:
+INSERT INTO employees (id, name, salary)
+VALUES (1, 'John Doe', 50000);</code></pre>
+
+    <h3>2. UPDATE</h3>
+    <pre><code>-- Syntax:
+UPDATE table_name
+SET column1 = value1
+WHERE condition;
+
+-- Example:
+UPDATE employees
+SET salary = 55000
+WHERE id = 1;</code></pre>
+
+    <h3>3. DELETE</h3>
+    <pre><code>-- Syntax:
+DELETE FROM table_name
+WHERE condition;
+
+-- Example:
+DELETE FROM employees
+WHERE id = 1;</code></pre>
+</section>
+
+<section id="dcl">
+    <h2>DCL (Data Control Language)</h2>
+    <p>DCL commands control access to data.</p>
+
+    <h3>1. GRANT</h3>
+    <pre><code>-- Syntax:
+GRANT privilege ON object TO user;
+
+-- Example:
+GRANT SELECT, INSERT ON employees TO 'user1';</code></pre>
+
+    <h3>2. REVOKE</h3>
+    <pre><code>-- Syntax:
+REVOKE privilege ON object FROM user;
+
+-- Example:
+REVOKE INSERT ON employees FROM 'user1';</code></pre>
+</section>
+
+<section id="tcl">
+    <h2>TCL (Transaction Control Language)</h2>
+    <p>TCL commands manage transactions in the database.</p>
+
+    <h3>1. COMMIT</h3>
+    <pre><code>-- Syntax:
+COMMIT;
+
+-- Example:
+-- After inserting or updating records, save changes
+INSERT INTO employees (id, name, salary) VALUES (2, 'Jane Doe', 60000);
+COMMIT;</code></pre>
+
+    <h3>2. ROLLBACK</h3>
+    <pre><code>-- Syntax:
+ROLLBACK;
+
+-- Example:
+-- Undo changes made in the current transaction
+ROLLBACK;</code></pre>
+</section>
+
+<section id="joins">
+    <h2>SQL Joins</h2>
+    <p>Joins are used to combine rows from two or more tables.</p>
+
+    <h3>1. INNER JOIN</h3>
+    <pre><code>SELECT a.name, b.department
+FROM employees a
+INNER JOIN departments b
+ON a.id = b.emp_id;</code></pre>
+
+    <h3>2. LEFT JOIN</h3>
+    <pre><code>SELECT a.name, b.department
+FROM employees a
+LEFT JOIN departments b
+ON a.id = b.emp_id;</code></pre>
+
+    <h3>3. RIGHT JOIN</h3>
+    <pre><code>SELECT a.name, b.department
+FROM employees a
+RIGHT JOIN departments b
+ON a.id = b.emp_id;</code></pre>
+
+    <h3>4. FULL OUTER JOIN</h3>
+    <pre><code>SELECT a.name, b.department
+FROM employees a
+FULL OUTER JOIN departments b
+ON a.id = b.emp_id;</code></pre>
+</section>
+
+<section id="functions">
+    <h2>SQL Functions</h2>
+    <p>SQL provides functions to perform calculations and manipulate data.</p>
+
+    <h3>1. Aggregate Functions</h3>
+    <pre><code>-- Example: Count, Sum, Avg
+SELECT COUNT(*) FROM employees;
+SELECT SUM(salary) FROM employees;
+SELECT AVG(salary) FROM employees;</code></pre>
+
+    <h3>2. String Functions</h3>
+    <pre><code>-- Example: CONCAT, LENGTH, UPPER
+SELECT CONCAT(name, ' works in ', department) FROM employees;
+SELECT LENGTH(name) FROM employees;
+SELECT UPPER(name) FROM employees;</code></pre>
+
+    <h3>3. Date Functions</h3>
+    <pre><code>-- Example: NOW(), DATE_ADD
+SELECT NOW();
+SELECT DATE_ADD(NOW(), INTERVAL 7 DAY);</code></pre>
+</section>
+
+<footer>
+    <p>SQL Notes © 2026 | Prepared by Nirbhay Singh</p>
+</footer>
+
+</body>
+</html>
