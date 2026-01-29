@@ -1,0 +1,31 @@
+﻿StudentID,Name,Department,Year,Email,Age
+1,Amit,Computer Science,2,amit1@gmail.com,20
+2,Sneha,Computer Science,3,sneha2@gmail.com,22
+3,Rahul,Information Technology,1,rahul3@gmail.com,19
+4,Priya,Information Technology,4,priya4@gmail.com,23
+5,Ankit,Computer Science,2,ankit5@gmail.com,22
+6,Neha,Electronics,3,neha6@gmail.com,21
+7,Rohit,Electronics,2,rohit7@gmail.com,20
+8,Pooja,Mechanical,1,pooja8@gmail.com,18
+9,Kunal,Mechanical,3,kunal9@gmail.com,22
+10,Simran,Civil,4,simran10@gmail.com,24
+11,Ajay,Civil,2,ajay11@gmail.com,21
+12,Nisha,Computer Science,1,nisha12@gmail.com,19
+13,Varun,Computer Science,4,varun13@gmail.com,23
+14,Isha,Information Technology,2,isha14@gmail.com,20
+15,Manish,Information Technology,3,manish15@gmail.com,22
+16,Divya,Electronics,1,divya16@gmail.com,18
+17,Sachin,Electronics,4,sachin17@gmail.com,24
+18,Anjali,Mechanical,2,anjali18@gmail.com,21
+19,Deepak,Mechanical,4,deepak19@gmail.com,23
+20,Kavita,Civil,1,kavita20@gmail.com,19
+21,Arjun,Civil,3,arjun21@gmail.com,22
+22,Riya,Computer Science,2,riya22@gmail.com,20
+23,Harsh,Computer Science,3,harsh23@gmail.com,21
+24,Mehul,Information Technology,4,mehul24@gmail.com,24
+25,Tanya,Information Technology,1,tanya25@gmail.com,18
+26,Vikas,Electronics,2,vikas26@gmail.com,20
+27,Payal,Mechanical,3,payal27@gmail.com,22
+28,Mohit,Mechanical,1,mohit28@gmail.com,19
+29,Sonal,Civil,2,sonal29@gmail.com,21
+30,Nitin,Civil,4,nitin30@gmail.com,24
