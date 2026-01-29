@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SQL Lab – Practical Questions with Solutions</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 25px;
+        background-color: #f9f9f9;
+        line-height: 1.6;
+    }
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+    }
+    h2 {
+        color: #1f4e79;
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 5px;
+    }
+    .question {
+        background: #ffffff;
+        padding: 15px;
+        margin-bottom: 30px;
+        border-left: 6px solid #007bff;
+    }
+    .solution {
+        background: #f1f1f1;
+        padding: 15px;
+        margin-top: 15px;
+        border-left: 6px solid #28a745;
+    }
+    pre {
+        background: #1e1e1e;
+        color: #ffffff;
+        padding: 12px;
+        overflow-x: auto;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>SQL Lab – Coding & Computational Thinking</h1>
+
+<!-- QUESTION 1 -->
+<div class="question">
+<h2>Question 1: Database & Table Creation (DDL)</h2>
+<ol>
+<li>Create a database named CollegeDB.</li>
+<li>Create a table Student with required fields.</li>
+<li>Describe the structure of the Student table.</li>
+<li>Drop the column Email from the table.</li>
+</ol>
+
+<div class="solution">
+<pre>
+CREATE DATABASE CollegeDB;
+USE CollegeDB;
+
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Department VARCHAR(50),
+    Year INT,
+    Email VARCHAR(100),
+    Age INT CHECK (Age >= 18)
+);
+
+DESC Student;
+
+ALTER TABLE Student DROP COLUMN Email;
+</pre>
+</div>
+</div>
+
+<!-- QUESTION 2 -->
+<div class="question">
+<h2>Question 2: Data Insertion & Constraints (DML)</h2>
+<ol>
+<li>Insert five records into the Student table.</li>
+<li>Insert a record that violates the CHECK constraint.</li>
+<li>Display all records.</li>
+<li>Insert values into selected columns only.</li>
+</ol>
+
+<div class="solution">
+<pre>
+INSERT INTO Student VALUES
+(1,'Amit','Computer Science',2,20),
+(2,'Neha','IT',3,21),
+(3,'Rahul','ECE',1,19),
+(4,'Anita','Computer Science',2,22),
+(5,'Karan','ME',4,23);
+
+-- CHECK constraint violation
+INSERT INTO Student VALUES
+(6,'Test','IT',1,15);
+
+SELECT * FROM Student;
+
+INSERT INTO Student (StudentID, Name, Department)
+VALUES (7,'Pooja','Civil');
+</pre>
+</div>
+</div>
+
+<!-- QUESTION 3 -->
+<div class="question">
+<h2>Question 3: SELECT Queries & Filtering</h2>
+<ol>
+<li>Display names and departments of all students.</li>
+<li>Display students from Computer Science department.</li>
+<li>Display students aged between 18 and 22.</li>
+<li>Names starting with 'A'.</li>
+<li>Sort students by age (descending).</li>
+</ol>
+
+<div class="solution">
+<pre>
+SELECT Name, Department FROM Student;
+
+SELECT * FROM Student
+WHERE Department = 'Computer Science';
+
+SELECT * FROM Student
+WHERE Age BETWEEN 18 AND 22;
+
+SELECT * FROM Student
+WHERE Name LIKE 'A%';
+
+SELECT * FROM Student
+ORDER BY Age DESC;
+</pre>
+</div>
+</div>
+
+<!-- QUESTION 4 -->
+<div class="question">
+<h2>Question 4: Aggregate Functions & GROUP BY</h2>
+<ol>
+<li>Total number of students.</li>
+<li>Average age.</li>
+<li>Department-wise student count.</li>
+<li>Departments having more than 2 students.</li>
+</ol>
+
+<div class="solution">
+<pre>
+SELECT COUNT(*) AS TotalStudents FROM Student;
+
+SELECT AVG(Age) AS AverageAge FROM Student;
+
+SELECT Department, COUNT(*) AS Total
+FROM Student
+GROUP BY Department;
+
+SELECT Department
+FROM Student
+GROUP BY Department
+HAVING COUNT(*) > 2;
+</pre>
+</div>
+</div>
+
+<!-- QUESTION 5 -->
+<div class="question">
+<h2>Question 5: UPDATE & DELETE Operations</h2>
+<ol>
+<li>Update department using StudentID.</li>
+<li>Increase age by 1 year.</li>
+<li>Delete students with age greater than 25.</li>
+<li>Delete all records without dropping table.</li>
+</ol>
+
+<div class="solution">
+<pre>
+UPDATE Student
+SET Department = 'IT'
+WHERE StudentID = 1;
+
+UPDATE Student
+SET Age = Age + 1;
+
+DELETE FROM Student
+WHERE Age > 25;
+
+DELETE FROM Student;
+</pre>
+</div>
+</div>
+
+<!-- QUESTION 6 -->
+<div class="question">
+<h2>Question 6: Constraints Implementation</h2>
+<ol>
+<li>Create Employee table with constraints.</li>
+<li>Insert three valid records.</li>
+<li>Insert invalid record.</li>
+<li>Add JoiningDate column.</li>
+</ol>
+
+<div class="solution">
+<pre>
+CREATE TABLE Employee (
+    EmpID INT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) UNIQUE,
+    Salary DECIMAL(10,2) CHECK (Salary > 10000),
+    Department VARCHAR(50) DEFAULT 'General'
+);
+
+INSERT INTO Employee VALUES
+(1,'Ravi','ravi@gmail.com',25000,'HR'),
+(2,'Meena','meena@gmail.com',30000,'IT'),
+(3,'Karan','karan@gmail.com',18000,DEFAULT);
+
+-- Constraint violation
+INSERT INTO Employee VALUES
+(4,NULL,'test@gmail.com',9000,'IT');
+
+ALTER TABLE Employee
+ADD JoiningDate DATE;
+</pre>
+</div>
+</div>
+
+<!-- QUESTION 7 -->
+<div class="question">
+<h2>Question 7: JOIN Operations</h2>
+<ol>
+<li>INNER JOIN student and course.</li>
+<li>LEFT JOIN students.</li>
+<li>RIGHT JOIN courses.</li>
+</ol>
+
+<div class="solution">
+<pre>
+SELECT s.Name, c.CourseName
+FROM Student s
+INNER JOIN Enrollment e ON s.StudentID = e.StudentID
+INNER JOIN Course c ON e.CourseID = c.CourseID;
+
+SELECT s.Name, c.CourseName
+FROM Student s
+LEFT JOIN Enrollment e ON s.StudentID = e.StudentID
+LEFT JOIN Course c ON e.CourseID = c.CourseID;
+
+SELECT s.Name, c.CourseName
+FROM Student s
+RIGHT JOIN Enrollment e ON s.StudentID = e.StudentID
+RIGHT JOIN Course c ON e.CourseID = c.CourseID;
+</pre>
+</div>
+</div>
+
+<!-- QUESTION 8 -->
+<div class="question">
+<h2>Question 8: Subqueries & Nested Queries</h2>
+<ol>
+<li>Students older than average age.</li>
+<li>Students enrolled in DBMS.</li>
+<li>Subquery using IN.</li>
+</ol>
+
+<div class="solution">
+<pre>
+SELECT * FROM Student
+WHERE Age > (SELECT AVG(Age) FROM Student);
+
+SELECT * FROM Student
+WHERE StudentID IN (
+    SELECT StudentID FROM Enrollment
+    WHERE CourseID = (
+        SELECT CourseID FROM Course
+        WHERE CourseName = 'DBMS'
+    )
+);
+
+SELECT * FROM Student
+WHERE StudentID IN (SELECT StudentID FROM Enrollment);
+</pre>
+</div>
+</div>
+
+<!-- QUESTION 9 -->
+<div class="question">
+<h2>Question 9: Views & Common Table Expressions (CTE)</h2>
+<ol>
+<li>Create a view.</li>
+<li>Retrieve data.</li>
+<li>Drop the view.</li>
+<li>CTE for age &gt; 20.</li>
+</ol>
+
+<div class="solution">
+<pre>
+CREATE VIEW StudentView AS
+SELECT StudentID, Name, Department FROM Student;
+
+SELECT * FROM StudentView;
+
+DROP VIEW StudentView;
+
+WITH AgeCTE AS (
+    SELECT * FROM Student WHERE Age > 20
+)
+SELECT * FROM AgeCTE;
+</pre>
+</div>
+</div>
+
+<!-- QUESTION 10 -->
+<div class="question">
+<h2>Question 10: Ranking Functions</h2>
+<ol>
+<li>Top 3 oldest students per department.</li>
+<li>DENSE_RANK age 1 or 2.</li>
+<li>RANK & DENSE_RANK together.</li>
+<li>Second highest age overall.</li>
+</ol>
+
+<div class="solution">
+<pre>
+SELECT *
+FROM (
+    SELECT *,
+    RANK() OVER (PARTITION BY Department ORDER BY Age DESC) AS rnk
+    FROM Student
+) t
+WHERE rnk <= 3;
+
+SELECT *
+FROM (
+    SELECT *,
+    DENSE_RANK() OVER (ORDER BY Age DESC) AS drnk
+    FROM Student
+) t
+WHERE drnk IN (1,2);
+
+SELECT StudentID, Name, Department, Age,
+RANK() OVER (PARTITION BY Department ORDER BY Age DESC) AS rnk,
+DENSE_RANK() OVER (PARTITION BY Department ORDER BY Age DESC) AS drnk
+FROM Student;
+
+SELECT *
+FROM (
+    SELECT *,
+    DENSE_RANK() OVER (ORDER BY Age DESC) AS drnk
+    FROM Student
+) t
+WHERE drnk = 2;
+</pre>
+</div>
+</div>
+
+<h2 style="text-align:center;">End of SQL Practical Lab</h2>
+
+</body>
+</html>
