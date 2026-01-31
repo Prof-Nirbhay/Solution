@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DAX Functions – Explained Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.7;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        h2 {
+            color: #1f618d;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #117864;
+        }
+        code {
+            background-color: #f4f6f7;
+            padding: 6px;
+            display: block;
+            margin: 6px 0;
+            border-left: 4px solid #2980b9;
+        }
+        .box {
+            background-color: #fdfefe;
+            border-left: 4px solid #27ae60;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>DAX Functions – Complete Explanation Guide</h1>
+
+<!-- ========================== -->
+<h2>1. Aggregation Functions</h2>
+
+<h3>SUM()</h3>
+<div class="box">
+<b>Explanation:</b>  
+SUM() is used to add all numeric values in a column. It is commonly used to calculate totals such as total sales, total marks, or total revenue.
+<code>SUM(Table[Column])</code>
+<b>Example:</b>  
+TotalSales = SUM(Sales[Amount])
+</div>
+
+<h3>AVERAGE()</h3>
+<div class="box">
+<b>Explanation:</b>  
+AVERAGE() calculates the mean of numeric values in a column.
+<code>AVERAGE(Table[Column])</code>
+<b>Example:</b>  
+AverageSalary = AVERAGE(Employee[Salary])
+</div>
+
+<h3>COUNT()</h3>
+<div class="box">
+<b>Explanation:</b>  
+COUNT() counts only numeric values in a column.
+<code>COUNT(Table[Column])</code>
+<b>Example:</b>  
+TotalOrders = COUNT(Orders[OrderID])
+</div>
+
+<h3>COUNTA()</h3>
+<div class="box">
+<b>Explanation:</b>  
+COUNTA() counts all non-blank values including text.
+<code>COUNTA(Table[Column])</code>
+<b>Example:</b>  
+TotalStudents = COUNTA(Student[Name])
+</div>
+
+<h3>COUNTBLANK()</h3>
+<div class="box">
+<b>Explanation:</b>  
+COUNTBLANK() counts empty or null values in a column.
+<code>COUNTBLANK(Table[Column])</code>
+<b>Example:</b>  
+MissingEmails = COUNTBLANK(Student[Email])
+</div>
+
+<!-- ========================== -->
+<h2>2. Logical Functions</h2>
+
+<h3>IF()</h3>
+<div class="box">
+<b>Explanation:</b>  
+IF() checks a condition and returns different results for TRUE and FALSE.
+<code>IF(condition, value_if_true, value_if_false)</code>
+<b>Example:</b>  
+Result = IF(Marks[Score] >= 40, "Pass", "Fail")
+</div>
+
+<h3>AND()</h3>
+<div class="box">
+<b>Explanation:</b>  
+AND() returns TRUE only if all conditions are true.
+<code>AND(condition1, condition2)</code>
+<b>Example:</b>  
+Eligible = IF(AND(Age >= 18, Age <= 60), "Yes", "No")
+</div>
+
+<h3>OR()</h3>
+<div class="box">
+<b>Explanation:</b>  
+OR() returns TRUE if any one condition is true.
+<code>OR(condition1, condition2)</code>
+<b>Example:</b>  
+Discount = IF(OR(Sales > 50000, CustomerType = "VIP"), "Yes", "No")
+</div>
+
+<h3>SWITCH()</h3>
+<div class="box">
+<b>Explanation:</b>  
+SWITCH() replaces multiple IF conditions and improves readability.
+<code>SWITCH(expression, value1, result1, else)</code>
+<b>Example:</b>  
+Grade = SWITCH(TRUE(),
+Marks >= 75, "A",
+Marks >= 60, "B",
+Marks >= 40, "C",
+"Fail")
+</div>
+
+<!-- ========================== -->
+<h2>3. Date and Time Functions</h2>
+
+<h3>TODAY()</h3>
+<div class="box">
+<b>Explanation:</b>  
+Returns the current system date.
+<code>TODAY()</code>
+<b>Example:</b>  
+CurrentDate = TODAY()
+</div>
+
+<h3>YEAR()</h3>
+<div class="box">
+<b>Explanation:</b>  
+Extracts the year from a date.
+<code>YEAR(date)</code>
+<b>Example:</b>  
+OrderYear = YEAR(Orders[OrderDate])
+</div>
+
+<h3>DATEDIFF()</h3>
+<div class="box">
+<b>Explanation:</b>  
+Calculates difference between two dates in days, months, or years.
+<code>DATEDIFF(start_date, end_date, unit)</code>
+<b>Example:</b>  
+Experience = DATEDIFF(Employee[JoinDate], TODAY(), YEAR)
+</div>
+
+<!-- ========================== -->
+<h2>4. Text Functions</h2>
+
+<h3>CONCATENATE()</h3>
+<div class="box">
+<b>Explanation:</b>  
+Joins two text values into one.
+<code>CONCATENATE(text1, text2)</code>
+<b>Example:</b>  
+FullName = CONCATENATE(Student[FirstName], Student[LastName])
+</div>
+
+<h3>LEFT()</h3>
+<div class="box">
+<b>Explanation:</b>  
+Extracts characters from the left side of text.
+<code>LEFT(text, num_chars)</code>
+<b>Example:</b>  
+Code = LEFT(Product[ProductCode], 3)
+</div>
+
+<h3>LEN()</h3>
+<div class="box">
+<b>Explanation:</b>  
+Returns number of characters in a text.
+<code>LEN(text)</code>
+<b>Example:</b>  
+NameLength = LEN(Customer[Name])
+</div>
+
+<!-- ========================== -->
+<h2>5. Filter Functions</h2>
+
+<h3>FILTER()</h3>
+<div class="box">
+<b>Explanation:</b>  
+Returns a filtered table based on condition.
+<code>FILTER(table, condition)</code>
+<b>Example:</b>  
+HighSales = FILTER(Sales, Sales[Amount] > 10000)
+</div>
+
+<h3>ALL()</h3>
+<div class="box">
+<b>Explanation:</b>  
+Removes all filters from a table or column.
+<code>ALL(table/column)</code>
+<b>Example:</b>  
+TotalSalesAll = CALCULATE(SUM(Sales[Amount]), ALL(Sales))
+</div>
+
+<!-- ========================== -->
+<h2>6. Relationship Functions</h2>
+
+<h3>RELATED()</h3>
+<div class="box">
+<b>Explanation:</b>  
+Fetches value from a related table using relationship.
+<code>RELATED(column)</code>
+<b>Example:</b>  
+DepartmentName = RELATED(Department[DeptName])
+</div>
+
+<!-- ========================== -->
+<h2>7. Table Functions</h2>
+
+<h3>SUMMARIZE()</h3>
+<div class="box">
+<b>Explanation:</b>  
+Groups data and creates summary tables.
+<code>SUMMARIZE(table, groupBy_column, "Name", expression)</code>
+<b>Example:</b>  
+SalesSummary = SUMMARIZE(Sales, Sales[Region], "TotalSales", SUM(Sales[Amount]))
+</div>
+
+<!-- ========================== -->
+<h2>8. Mathematical Functions</h2>
+
+<h3>DIVIDE()</h3>
+<div class="box">
+<b>Explanation:</b>  
+Safely divides two numbers and avoids divide-by-zero error.
+<code>DIVIDE(numerator, denominator, alternateResult)</code>
+<b>Example:</b>  
+ProfitMargin = DIVIDE(Profit, Sales, 0)
+</div>
+
+<!-- ========================== -->
+<h2>9. Power BI UI Elements (Separate Explanation)</h2>
+
+<div class="box">
+<b>Fields Pane:</b> Displays tables, columns, and measures.<br><br>
+<b>Visualizations Pane:</b> Used to select and customize charts.<br><br>
+<b>Filters Pane:</b> Apply filters at report, page, or visual level.<br><br>
+<b>Report Canvas:</b> Main area for placing visuals.<br><br>
+<b>Data View:</b> Used to create calculated columns.<br><br>
+<b>Model View:</b> Used to manage table relationships.<br><br>
+<b>DAX Formula Bar:</b> Used to write DAX expressions.
+</div>
+
+</body>
+</html>
