@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Power BI Data Transformation Notes (Power Query)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.7;
+            margin: 30px;
+            background-color: #f9f9f9;
+            color: #222;
+        }
+        h1, h2, h3 {
+            color: #2b579a;
+        }
+        h1 {
+            text-align: center;
+        }
+        hr {
+            margin: 25px 0;
+        }
+        ul {
+            margin-left: 20px;
+        }
+        code {
+            background-color: #eee;
+            padding: 3px 6px;
+            border-radius: 4px;
+        }
+        .box {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+<h1>Power BI – Data Transformation & Cleaning Notes (Power Query)</h1>
+
+<div class="box">
+<p>
+These notes are written in <b>step-by-step academic style</b>, useful for
+<b>students, exams, practicals, NAAC documentation, and real projects</b>.
+</p>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>1. What is Data Transformation in Power BI?</h2>
+<p><b>Data Transformation</b> means converting raw, unclean data into a structured and analysis-ready format.</p>
+<p>In Power BI, this is done using <b>Power Query Editor</b>.</p>
+
+<h3>Why it is needed?</h3>
+<ul>
+    <li>Raw data may contain <b>null values</b></li>
+    <li>Duplicate records</li>
+    <li>Wrong data types</li>
+    <li>Extra spaces</li>
+    <li>Inconsistent formats</li>
+</ul>
+
+<p>Power Query helps clean and shape data <b>before loading it into the data model</b>.</p>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>2. Power Query Editor – How to Open</h2>
+<h3>Steps:</h3>
+<ol>
+    <li>Open <b>Power BI Desktop</b></li>
+    <li>Click <b>Home → Get Data</b></li>
+    <li>Select data source (Excel / CSV / SQL / etc.)</li>
+    <li>Click <b>Transform Data</b></li>
+</ol>
+<p>This opens <b>Power Query Editor</b>.</p>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>3. Understanding NULL Values</h2>
+<h3>What is a NULL value?</h3>
+<ul>
+    <li>A NULL means <b>missing or unknown data</b></li>
+    <li>It is <b>not zero (0)</b> and <b>not empty string ("")</b></li>
+</ul>
+
+<h3>Examples:</h3>
+<ul>
+    <li>Student marks not entered</li>
+    <li>Salary not disclosed</li>
+    <li>Date not available</li>
+</ul>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>4. How to Identify NULL Values</h2>
+<h3>Steps:</h3>
+<ol>
+    <li>Open Power Query Editor</li>
+    <li>Select a column</li>
+    <li>Look for cells showing <b>null</b></li>
+    <li>Filter icon → you will see <b>(null)</b> option</li>
+</ol>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>5. Remove Rows Containing NULL Values</h2>
+
+<h3>Case 1: Remove rows with NULL in specific column</h3>
+<ol>
+    <li>Select the column</li>
+    <li>Click <b>Home → Remove Rows → Remove Blank Rows</b></li>
+</ol>
+
+<p><b>OR</b></p>
+
+<ol>
+    <li>Click filter icon of column</li>
+    <li>Uncheck <b>(null)</b></li>
+    <li>Click OK</li>
+</ol>
+
+<h3>When to use?</h3>
+<ul>
+    <li>When NULL values are meaningless</li>
+    <li>When incomplete records must be discarded</li>
+</ul>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>6. Replace NULL Values</h2>
+
+<h3>Example:</h3>
+<p>Replace NULL marks with 0</p>
+
+<h3>Steps:</h3>
+<ol>
+    <li>Select the column</li>
+    <li>Go to <b>Transform → Replace Values</b></li>
+    <li>Value to find: <code>null</code></li>
+    <li>Replace with: <code>0</code></li>
+    <li>Click OK</li>
+</ol>
+
+<h3>Use cases:</h3>
+<ul>
+    <li>Numerical calculations</li>
+    <li>Avoid errors in aggregation</li>
+</ul>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>7. Fill NULL Values (Fill Down / Fill Up)</h2>
+<p>Used when data is grouped and NULLs depend on previous values.</p>
+
+<h3>Fill Down – Steps:</h3>
+<ol>
+    <li>Select column</li>
+    <li>Transform → Fill → Down</li>
+</ol>
+
+<h3>Fill Up – Steps:</h3>
+<ol>
+    <li>Select column</li>
+    <li>Transform → Fill → Up</li>
+</ol>
+
+<p><b>Example:</b> Department name missing in rows below first occurrence</p>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>8. Add NULL Value Column</h2>
+
+<h3>Create a new column with NULL values</h3>
+<ol>
+    <li>Go to <b>Add Column → Custom Column</b></li>
+    <li>Column name: <code>Remarks</code></li>
+    <li>Formula: <code>null</code></li>
+    <li>Click OK</li>
+</ol>
+
+<p>Used when:</p>
+<ul>
+    <li>Placeholder columns are needed</li>
+    <li>Future data entry</li>
+</ul>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>9. Handling Duplicate Values</h2>
+
+<h3>What are duplicates?</h3>
+<p>Multiple rows having identical data</p>
+
+<h3>Identify duplicates – Steps:</h3>
+<ol>
+    <li>Select column(s)</li>
+    <li>Home → Keep Rows → Keep Duplicates</li>
+</ol>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>10. Remove Duplicate Rows</h2>
+
+<h3>Remove duplicates based on one column</h3>
+<ol>
+    <li>Select column</li>
+    <li>Home → Remove Rows → Remove Duplicates</li>
+</ol>
+
+<h3>Remove duplicates based on multiple columns</h3>
+<ol>
+    <li>Select multiple columns (Ctrl + Click)</li>
+    <li>Home → Remove Rows → Remove Duplicates</li>
+</ol>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>11. Change Data Types</h2>
+
+<h3>Why important?</h3>
+<ul>
+    <li>Calculation errors</li>
+    <li>Incorrect visuals</li>
+</ul>
+
+<h3>Steps:</h3>
+<ol>
+    <li>Select column</li>
+    <li>Transform → Data Type</li>
+    <li>Choose correct type (Text, Whole Number, Decimal, Date, etc.)</li>
+</ol>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>12. Trim, Clean & Format Text Data</h2>
+
+<h3>Trim (remove extra spaces)</h3>
+<ol>
+    <li>Select text column</li>
+    <li>Transform → Format → Trim</li>
+</ol>
+
+<h3>Clean (remove non-printable characters)</h3>
+<p>Transform → Format → Clean</p>
+
+<h3>Change case</h3>
+<ul>
+    <li>Uppercase</li>
+    <li>Lowercase</li>
+    <li>Capitalize Each Word</li>
+</ul>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>13. Split Column</h2>
+
+<h3>Example:</h3>
+<p>Full Name → First Name & Last Name</p>
+
+<h3>Steps:</h3>
+<ol>
+    <li>Select column</li>
+    <li>Transform → Split Column → By Delimiter</li>
+    <li>Choose delimiter (space, comma, etc.)</li>
+</ol>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>14. Merge Columns</h2>
+
+<h3>Combine multiple columns</h3>
+<ol>
+    <li>Select columns</li>
+    <li>Transform → Merge Columns</li>
+    <li>Choose separator</li>
+</ol>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>15. Conditional Column</h2>
+
+<h3>Example:</h3>
+<p>If Marks ≥ 40 → Pass else Fail</p>
+
+<h3>Steps:</h3>
+<ol>
+    <li>Add Column → Conditional Column</li>
+    <li>Set conditions</li>
+    <li>Name the column</li>
+</ol>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>16. Filter Rows</h2>
+
+<h3>Remove unwanted data</h3>
+<ol>
+    <li>Click filter icon</li>
+    <li>Apply conditions (equals, greater than, contains)</li>
+</ol>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>17. Sort Data</h2>
+<ol>
+    <li>Click column header</li>
+    <li>Choose Ascending / Descending</li>
+</ol>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>18. Remove Errors</h2>
+
+<p>Used when calculation or type conversion fails</p>
+
+<h3>Steps:</h3>
+<ol>
+    <li>Select column</li>
+    <li>Home → Remove Rows → Remove Errors</li>
+</ol>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>19. Rename Columns</h2>
+<ol>
+    <li>Double-click column header</li>
+    <li>Enter meaningful name</li>
+</ol>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>20. Close & Apply</h2>
+
+<h3>Steps:</h3>
+<ol>
+    <li>Click <b>Home → Close & Apply</b></li>
+    <li>Data loads into Power BI model</li>
+</ol>
+</div>
+
+</body>
+</html>
